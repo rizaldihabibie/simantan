@@ -38,12 +38,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 "username VARCHAR(50)," +
                 "password VARCHAR(50))";
         db.execSQL(CREATE_CREDENTIAL_TABLE);
+        final String INSERT_FIRST_ROW = "INSERT INTO credential (username, password) values ('habibie@admin.com','qwerty123')";
+        db.execSQL(INSERT_FIRST_ROW);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL("DROP TABLE IF EXISTS credential ");
-        onCreate(db);
+//        db.execSQL("DROP TABLE IF EXISTS credential ");
+//        onCreate(db);
     }
 
 }
