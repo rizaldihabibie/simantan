@@ -27,7 +27,7 @@ public class GarduDaoImpl implements GarduDao {
         contentValues.put("tap_trafo",gardu.getTapTrafo());
         contentValues.put("jumlah_jurusan",gardu.getJumlahJurusan());
         contentValues.put("konstruksi",gardu.getKonstruksi());
-        contentValues.put("tanggal_ukur", String.valueOf(gardu.getTanggalUkur()));
+        contentValues.put("tanggal_ukur", gardu.getTanggalUkur());
         contentValues.put("jam_ukur",gardu.getJamUkur());
         contentValues.put("petugas",gardu.getPetugas());
         contentValues.put("koordinat",gardu.getKoordinat());
@@ -41,5 +41,10 @@ public class GarduDaoImpl implements GarduDao {
             return false;
         }
 
+    }
+
+    @Override
+    public String[] getAllData() {
+        return new String[0];
     }
 }

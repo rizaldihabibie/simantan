@@ -13,7 +13,7 @@ public class Gardu {
     private String tapTrafo;
     private String jumlahJurusan;
     private String konstruksi;
-    private Date tanggalUkur;
+    private String tanggalUkur;
     private String jamUkur;
     private String Petugas;
     private String koordinat;
@@ -75,11 +75,11 @@ public class Gardu {
         this.konstruksi = konstruksi;
     }
 
-    public Date getTanggalUkur() {
+    public String getTanggalUkur() {
         return tanggalUkur;
     }
 
-    public void setTanggalUkur(Date tanggalUkur) {
+    public void setTanggalUkur(String tanggalUkur) {
         this.tanggalUkur = tanggalUkur;
     }
 

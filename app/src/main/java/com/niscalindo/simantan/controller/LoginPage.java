@@ -1,4 +1,4 @@
-package com.niscalindo.simantan;
+package com.niscalindo.simantan.controller;
 
 import android.content.Context;
 import android.content.Intent;
@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.niscalindo.simantan.R;
 import com.niscalindo.simantan.database.dao.LoginDao;
 import com.niscalindo.simantan.database.dao.dao.impl.LoginDaoImpl;
 import com.niscalindo.simantan.database.model.Credential;
