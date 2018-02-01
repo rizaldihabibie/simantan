@@ -38,8 +38,27 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 "username VARCHAR(50)," +
                 "password VARCHAR(50))";
         db.execSQL(CREATE_CREDENTIAL_TABLE);
+
+        final String CREATE_GARDU_TABLE = "CREATE gardu credential (" +
+                "id INTEGER PRIMARY KEY autoincrement," +
+                "nomor_gardu VARCHAR(50)," +
+                "alamat VARCHAR(250)," +
+                "kapasitas_trafo VARCHAR(50)," +
+                "penyulang VARCHAR(50)," +
+                "merk_trafo VARCHAR(50)," +
+                "tap_trafo VARCHAR(50)," +
+                "jumlah_jurusan VARCHAR(50)," +
+                "konstruksi VARCHAR(50)," +
+                "tanggal_ukur VARCHAR(50)," +
+                "jam_ukur VARCHAR(50)," +
+                "petugas VARCHAR(100)," +
+                "koordinat VARCHAR(250))";
+        db.execSQL(CREATE_GARDU_TABLE);
+
         final String INSERT_FIRST_ROW = "INSERT INTO credential (username, password) values ('habibie@admin.com','qwerty123')";
         db.execSQL(INSERT_FIRST_ROW);
+
+
     }
 
     @Override
