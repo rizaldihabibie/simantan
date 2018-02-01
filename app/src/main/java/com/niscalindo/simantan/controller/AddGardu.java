@@ -45,8 +45,9 @@ public class AddGardu extends AppCompatActivity {
         tanggalUkur = ((EditText)findViewById(R.id.tanggalUkur));
         jamUkur = ((EditText)findViewById(R.id.jamUkur));
         petugas = ((EditText)findViewById(R.id.petugas));
+        koordinat = ((EditText)findViewById(R.id.koordinat));
 
-        saveButton = (Button)findViewById(R.id.addGarduButton);
+        saveButton = (Button)findViewById(R.id.saveButton);
         saveButton.setOnClickListener(
                 new View.OnClickListener() {
                     @Override

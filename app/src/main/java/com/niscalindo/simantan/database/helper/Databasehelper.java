@@ -13,19 +13,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     private static final int DATABASE_VERSION = 2;
     static final String DATABASE_NAME = "simantan.db";
-    public static final String TABEL_GARDU = "gardu";
-    public static final String COLUMN_ID = "id";
-    public static final String NOMOR_GARDU = "nomor_gardu";
-    public static final String ALAMAT = "alamat";
-    public static final String KAPASITAS_TRAFO = "kapasitas_trafo";
-    public static final String PENYULANG = "penyulang";
-    public static final String MERK_TRAFO = "merk_trafo";
-    public static final String TAP_TRAFO = "tap_trafo";
-    public static final String JUMLAH_JURUSAN = "jumlah_jurusan";
-    public static final String KONSTRUKSI = "konstruksi";
-    public static final String TANGGAL_UKUR = "tanggal_ukur";
-    public static final String PETUGAS = "petugas";
-    public static final String KOORDINAT = "koordinat";
 
     public DatabaseHelper(Context context){
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -39,7 +26,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 "password VARCHAR(50))";
         db.execSQL(CREATE_CREDENTIAL_TABLE);
 
-        final String CREATE_GARDU_TABLE = "CREATE gardu credential (" +
+        final String CREATE_GARDU_TABLE = "CREATE TABLE gardu (" +
                 "id INTEGER PRIMARY KEY autoincrement," +
                 "nomor_gardu VARCHAR(50)," +
                 "alamat VARCHAR(250)," +
@@ -63,8 +50,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-//        db.execSQL("DROP TABLE IF EXISTS credential ");
-//        onCreate(db);
+        db.execSQL("DROP TABLE IF EXISTS credential ");
+        db.execSQL("DROP TABLE IF EXISTS gardu ");
+        onCreate(db);
     }
 
 }

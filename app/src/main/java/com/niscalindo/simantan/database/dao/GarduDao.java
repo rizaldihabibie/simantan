@@ -10,5 +10,5 @@ import com.niscalindo.simantan.database.model.Gardu;
 public interface GarduDao{
 
     public boolean saveGardu(Gardu gardu, Context context);
-    public String[] getAllData();
+    public String[] getAllData(Context context);
 }
