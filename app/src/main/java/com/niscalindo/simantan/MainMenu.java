@@ -26,7 +26,7 @@ public class MainMenu extends AppCompatActivity {
                     public void onClick(View v) {
 //                        cre = loginDao.login(username.getText().toString(),password.getText().toString(),context);
 //                        if(!cre.getUsername().equals("kosong")){
-                            Intent intent = new Intent("com.niscalindo.simantan.AddGardu");
+                            Intent intent = new Intent("com.niscalindo.simantan.controller.AddGardu");
                             startActivity(intent);
 //                        }
                     }
