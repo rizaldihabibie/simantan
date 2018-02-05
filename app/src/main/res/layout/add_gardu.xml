@@ -221,12 +221,15 @@
                     android:layout_weight="0.25"
                     android:text="Koordinat" />
 
-                <EditText
-                    android:id="@+id/koordinat"
-                    android:layout_width="0dp"
+                <Button
+                    android:theme="@style/AppTheme.ButtonMenu"
+                    android:background="@drawable/button_save_gardu"
+                    android:id="@+id/openMap"
+                    android:layout_width="100dp"
+                    android:layout_centerInParent="true"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.75"
-                    android:ems="10" />
+                    android:text="MAPS"
+                    android:textStyle="bold" />
             </LinearLayout>
             <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="match_parent"

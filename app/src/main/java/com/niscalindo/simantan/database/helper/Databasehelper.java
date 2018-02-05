@@ -14,6 +14,22 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final int DATABASE_VERSION = 2;
     static final String DATABASE_NAME = "simantan.db";
 
+    /** Field 1 of the table locations, which is the primary key */
+    public static final String FIELD_ROW_ID = "_id";
+
+    /** Field 2 of the table locations, stores the latitude */
+    public static final String FIELD_LAT = "lat";
+
+    /** Field 3 of the table locations, stores the longitude*/
+    public static final String FIELD_LNG = "lng";
+
+    /** Field 4 of the table locations, stores the zoom level of map*/
+    public static final String FIELD_ZOOM = "zom";
+
+    /** A constant, stores the the table name */
+    private static final String DATABASE_TABLE = "locations";
+
+
     public DatabaseHelper(Context context){
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
@@ -45,6 +61,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         final String INSERT_FIRST_ROW = "INSERT INTO credential (username, password) values ('habibie@admin.com','qwerty123')";
         db.execSQL(INSERT_FIRST_ROW);
 
+        final String CREATE_MAP_TABLE =     "create table " + DATABASE_TABLE + " ( " +
+                FIELD_ROW_ID + " integer primary key autoincrement , " +
+                FIELD_LNG + " double , " +
+                FIELD_LAT + " double , " +
+                FIELD_ZOOM + " text " +
+                " ) ";
+
+        db.execSQL(CREATE_MAP_TABLE);
 
     }
 

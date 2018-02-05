@@ -21,7 +21,7 @@ public class AddGardu extends AppCompatActivity {
     private EditText nomorGardu, alamat, kapasitasTrafo, penyulang;
     private EditText merkTrafo, tapTrafo, jumlahJurusan, konstruksi, tanggalUkur;
     private EditText jamUkur, petugas, koordinat;
-    private Button saveButton;
+    private Button saveButton, mapButton;
     private GarduDao garduDao;
     private Context context;
     @Override
@@ -45,7 +45,7 @@ public class AddGardu extends AppCompatActivity {
         tanggalUkur = ((EditText)findViewById(R.id.tanggalUkur));
         jamUkur = ((EditText)findViewById(R.id.jamUkur));
         petugas = ((EditText)findViewById(R.id.petugas));
-        koordinat = ((EditText)findViewById(R.id.koordinat));
+//        koordinat = ((EditText)findViewById(R.id.koordinat));
 
         saveButton = (Button)findViewById(R.id.saveButton);
         saveButton.setOnClickListener(
@@ -64,7 +64,7 @@ public class AddGardu extends AppCompatActivity {
                         gardu.setTanggalUkur(tanggalUkur.getText().toString());
                         gardu.setJamUkur(jamUkur.getText().toString());
                         gardu.setPetugas(petugas.getText().toString());
-                        gardu.setKoordinat(koordinat.getText().toString());
+//                        gardu.setKoordinat(koordinat.getText().toString());
                         boolean success = garduDao.saveGardu(gardu,context);
                         if(success){
                             Intent intent = new Intent("com.niscalindo.simantan.controller.GarduPage");
@@ -72,6 +72,16 @@ public class AddGardu extends AppCompatActivity {
                         }else{
                             Toast.makeText(context, "Something wrong", Toast.LENGTH_SHORT).show();
                         }
+                    }
+                }
+        );
+        mapButton = (Button)findViewById(R.id.openMap);
+        mapButton.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                            Intent intent = new Intent("com.niscalindo.simantan.controller.MapController");
+                            startActivity(intent);
                     }
                 }
         );
