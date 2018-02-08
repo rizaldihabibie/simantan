@@ -1,14 +1,23 @@
 package com.niscalindo.simantan.controller;
 
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-
 
 import com.niscalindo.simantan.R;
 import com.niscalindo.simantan.database.dao.GarduDao;
 import com.niscalindo.simantan.database.dao.dao.impl.GarduDaoImpl;
+import com.niscalindo.simantan.database.model.Gardu;
+
+import java.io.Serializable;
+import java.util.List;
 
 /**
  * Created by USER on 2/1/2018.
@@ -16,7 +25,8 @@ import com.niscalindo.simantan.database.dao.dao.impl.GarduDaoImpl;
 public class GarduPage extends AppCompatActivity{
     private ListView listView;
     private GarduDao garduDao;
-    private String[] data;
+    private List<Gardu> data;
+    private FloatingActionButton fab;
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -24,7 +34,49 @@ public class GarduPage extends AppCompatActivity{
         garduDao = new GarduDaoImpl();
         data = garduDao.getAllData(this);
         listView = (ListView)findViewById(R.id.listGardu);
-        listView.setAdapter(new ArrayAdapter(this, android.R.layout.simple_list_item_1,data));
+        ArrayAdapter<Gardu> adapter = new ArrayAdapter<Gardu>(this, android.R.layout.simple_list_item_1,data);
+        listView.setAdapter(adapter);
         listView.setSelected(true);
+        fab = (FloatingActionButton) findViewById(R.id.fab);
+
+        init();
     }
+    public void init(){
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent("com.niscalindo.simantan.controller.AddGardu");
+                startActivity(intent);
+            }
+        });
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            public void onItemClick(AdapterView arg0, View arg1, final int arg2, long arg3) {
+//                final String selection = daftar[arg2]; //.getItemAtPosition(arg2).toString();
+                final CharSequence[] dialogitem = {"Lihat Data", "Open Map", "Update Data", "Hapus"};
+                AlertDialog.Builder builder = new AlertDialog.Builder(GarduPage.this);
+                builder.setTitle("Pilihan");
+                builder.setItems(dialogitem, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int item) {
+                        switch(item){
+                            case 0 :
+
+                            case 1 :
+                                Intent intent = new Intent("com.niscalindo.simantan.controller.ViewMapController");
+                                intent.putExtra("GARDU_DATA_SESSION", (Serializable) listView.getItemAtPosition(arg2));
+                                startActivity(intent);
+                                break;
+                            case 2 :
+//                                SQLiteDatabase db = dbcenter.getWritableDatabase();
+//                                db.execSQL("delete from biodata where nama = '"+selection+"'");
+//                                RefreshList();
+                                break;
+                        }
+                    }
+                });
+                builder.create().show();
+            }});
+        ((ArrayAdapter)listView.getAdapter()).notifyDataSetInvalidated();
+    }
+
 }

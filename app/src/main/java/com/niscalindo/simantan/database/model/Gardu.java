@@ -1,11 +1,11 @@
 package com.niscalindo.simantan.database.model;
 
-import java.util.Date;
+import java.io.Serializable;
 
 /**
  * Created by USER on 1/30/2018.
  */
-public class Gardu {
+public class Gardu implements Serializable {
     private String nomorGardu;
     private String alamat;
     private String kapasitasTrafo;
@@ -16,8 +16,15 @@ public class Gardu {
     private String tanggalUkur;
     private String jamUkur;
     private String Petugas;
-    private String koordinat;
+    private Double latitude;
+    private Double longitude;
+    private float zoom;
     private String penyulang;
+
+    @Override
+    public String toString() {
+        return this.nomorGardu;
+    }
 
     public String getNomorGardu() {
         return nomorGardu;
@@ -99,19 +106,35 @@ public class Gardu {
         Petugas = petugas;
     }
 
-    public String getKoordinat() {
-        return koordinat;
-    }
-
-    public void setKoordinat(String koordinat) {
-        this.koordinat = koordinat;
-    }
-
     public String getPenyulang() {
         return penyulang;
     }
 
     public void setPenyulang(String penyulang) {
         this.penyulang = penyulang;
+    }
+
+    public Double getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(Double latitude) {
+        this.latitude = latitude;
+    }
+
+    public Double getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(Double longitude) {
+        this.longitude = longitude;
+    }
+
+    public float getZoom() {
+        return zoom;
+    }
+
+    public void setZoom(float zoom) {
+        this.zoom = zoom;
     }
 }
