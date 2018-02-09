@@ -58,11 +58,15 @@ public class GarduPage extends AppCompatActivity{
                 builder.setTitle("Pilihan");
                 builder.setItems(dialogitem, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int item) {
+                        Intent intent;
                         switch(item){
                             case 0 :
-
+                                intent = new Intent("com.niscalindo.simantan.controller.ViewDataGardu");
+                                intent.putExtra("GARDU_DATA_SESSION", (Serializable) listView.getItemAtPosition(arg2));
+                                startActivity(intent);
+                                break;
                             case 1 :
-                                Intent intent = new Intent("com.niscalindo.simantan.controller.ViewMapController");
+                                intent = new Intent("com.niscalindo.simantan.controller.ViewMapController");
                                 intent.putExtra("GARDU_DATA_SESSION", (Serializable) listView.getItemAtPosition(arg2));
                                 startActivity(intent);
                                 break;
