@@ -71,10 +71,10 @@ public class GarduPage extends AppCompatActivity{
                                 startActivity(intent);
                                 break;
                             case 2 :
-//                                SQLiteDatabase db = dbcenter.getWritableDatabase();
-//                                db.execSQL("delete from biodata where nama = '"+selection+"'");
-//                                RefreshList();
-                                break;
+                               intent = new Intent("com.niscalindo.simantan.controller.EditGardu");
+                               intent.putExtra("GARDU_DATA_SESSION", (Serializable) listView.getItemAtPosition(arg2));
+                               startActivity(intent);
+                               break;
                         }
                     }
                 });

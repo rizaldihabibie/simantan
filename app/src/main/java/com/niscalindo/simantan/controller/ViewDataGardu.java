@@ -22,7 +22,7 @@ public class ViewDataGardu extends AppCompatActivity {
     private EditText nomorGardu, alamat, kapasitasTrafo, penyulang;
     private EditText merkTrafo, tapTrafo, jumlahJurusan, konstruksi, tanggalUkur;
     private EditText jamUkur, petugas, koordinat;
-    private Button saveButton, mapButton;
+    private Button editButton, mapButton;
     private GarduDao garduDao;
     private Context context;
     private Gardu garduMap;
@@ -30,7 +30,7 @@ public class ViewDataGardu extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.add_gardu);
+        setContentView(R.layout.view_gardu);
         garduDao = new GarduDaoImpl();
         context = this;
         init();
@@ -52,14 +52,23 @@ public class ViewDataGardu extends AppCompatActivity {
         tanggalUkur = ((EditText)findViewById(R.id.tanggalUkur));
         jamUkur = ((EditText)findViewById(R.id.jamUkur));
         petugas = ((EditText)findViewById(R.id.petugas));
-        mapButton = (Button)findViewById(R.id.openMap);
-        saveButton = (Button)findViewById(R.id.saveButton);
-        saveButton.setVisibility(View.GONE);
+        mapButton = (Button)findViewById(R.id.mapButton);
+        editButton = (Button)findViewById(R.id.editButton);
         mapButton.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         Intent intent = new Intent("com.niscalindo.simantan.controller.ViewMapController");
+                        intent.putExtra("GARDU_DATA_SESSION", (Serializable) garduMap);
+                        startActivity(intent);
+                    }
+                }
+        );
+        editButton.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent("com.niscalindo.simantan.controller.EditGardu");
                         intent.putExtra("GARDU_DATA_SESSION", (Serializable) garduMap);
                         startActivity(intent);
                     }

@@ -14,4 +14,5 @@ public interface GarduDao{
     public boolean saveGardu(Gardu gardu, Context context);
     public String[] getAllStringData(Context context);
     public List<Gardu> getAllData(Context context);
+    public boolean updateGardu(Gardu gardu, Context context);
 }

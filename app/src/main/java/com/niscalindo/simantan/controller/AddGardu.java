@@ -170,6 +170,7 @@ public class AddGardu extends AppCompatActivity {
                             gardu.setPetugas(petugas.getText().toString());
                             Intent intent = new Intent("com.niscalindo.simantan.controller.MapController");
                             intent.putExtra("GARDU_SESSION", (Serializable) gardu);
+                            intent.putExtra("SESSION", "ADD");
                             startActivity(intent);
                         }
 

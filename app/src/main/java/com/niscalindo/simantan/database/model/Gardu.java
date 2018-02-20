@@ -6,6 +6,8 @@ import java.io.Serializable;
  * Created by USER on 1/30/2018.
  */
 public class Gardu implements Serializable {
+
+    private String id;
     private String nomorGardu;
     private String alamat;
     private String kapasitasTrafo;
@@ -136,5 +138,13 @@ public class Gardu implements Serializable {
 
     public void setZoom(float zoom) {
         this.zoom = zoom;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }

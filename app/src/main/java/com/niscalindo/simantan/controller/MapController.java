@@ -25,6 +25,7 @@ public class MapController extends AppCompatActivity implements OnMapReadyCallba
 
     GoogleMap gMap;
     Context cob = this;
+    String action = "";
     private Gardu gardu;
     @Override        protected void onCreate (Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -34,6 +35,7 @@ public class MapController extends AppCompatActivity implements OnMapReadyCallba
                         .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
         gardu = (Gardu)getIntent().getSerializableExtra("GARDU_SESSION");
+        action = (String)getIntent().getStringExtra("SESSION");
         Toast.makeText(cob, gardu.getNomorGardu() ,
                 Toast.LENGTH_SHORT).show();
     }
@@ -51,9 +53,14 @@ public class MapController extends AppCompatActivity implements OnMapReadyCallba
                 gardu.setLatitude(point.latitude);
                 gardu.setLongitude(point.longitude);
                 gardu.setZoom(gMap.getCameraPosition().zoom);
-
-                Intent intent = new Intent("com.niscalindo.simantan.controller.AddGardu");
-                intent.putExtra("GARDU_AND_MAP", (Serializable)gardu);
+                Intent intent = null;
+                if(action.equals("ADD")){
+                    intent = new Intent("com.niscalindo.simantan.controller.AddGardu");
+                    intent.putExtra("GARDU_AND_MAP", (Serializable)gardu);
+                }else{
+                    intent = new Intent("com.niscalindo.simantan.controller.EditGardu");
+                    intent.putExtra("GARDU_DATA_SESSION", (Serializable)gardu);
+                }
                 startActivity(intent);
 
 //                ContentValues contentValues = new ContentValues();

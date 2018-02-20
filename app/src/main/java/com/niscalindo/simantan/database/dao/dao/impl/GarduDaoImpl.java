@@ -81,6 +81,7 @@ public class GarduDaoImpl implements GarduDao {
         for(int i = 0; i<cursor.getCount();i++){
             cursor.moveToPosition(i);
             Gardu gardu = new Gardu();
+            gardu.setId(cursor.getString(0).toString());
             gardu.setNomorGardu(cursor.getString(1).toString());
             gardu.setAlamat(cursor.getString(2).toString());
             gardu.setKapasitasTrafo(cursor.getString(3).toString());
@@ -100,5 +101,33 @@ public class GarduDaoImpl implements GarduDao {
         }
         return data;
 
+    }
+
+    @Override
+    public boolean updateGardu(Gardu gardu, Context context) {
+        dbHelper = new DatabaseHelper(context);
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("nomor_gardu",gardu.getNomorGardu());
+        contentValues.put("alamat",gardu.getAlamat());
+        contentValues.put("kapasitas_trafo",gardu.getKapasitasTrafo());
+        contentValues.put("penyulang",gardu.getPenyulang());
+        contentValues.put("merk_trafo",gardu.getMerkTrafo());
+        contentValues.put("tap_trafo",gardu.getTapTrafo());
+        contentValues.put("jumlah_jurusan",gardu.getJumlahJurusan());
+        contentValues.put("konstruksi",gardu.getKonstruksi());
+        contentValues.put("tanggal_ukur", gardu.getTanggalUkur());
+        contentValues.put("jam_ukur",gardu.getJamUkur());
+        contentValues.put("petugas",gardu.getPetugas());
+        contentValues.put("latitude",gardu.getLatitude());
+        contentValues.put("langitude",gardu.getLongitude());
+        contentValues.put("zoom",gardu.getZoom());
+        String where = "id = ?";
+
+        String[] whereArgs = { gardu.getId()};
+        boolean updateSuccessful = db.update("gardu", contentValues, where, whereArgs) > 0;
+        db.close();
+
+        return updateSuccessful;
     }
 }
