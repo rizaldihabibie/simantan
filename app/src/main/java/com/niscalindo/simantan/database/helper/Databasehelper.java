@@ -40,7 +40,35 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 "petugas VARCHAR(100)," +
                 "latitude double," +
                 "langitude double," +
-                "zoom text )";
+                "zoom text," +
+                "r_n VARCHAR(20)," +
+                "r_s VARCHAR(20)," +
+                "s_n VARCHAR(20)," +
+                "r_t VARCHAR(20)," +
+                "t_n VARCHAR(20)," +
+                "s_t VARCHAR(20)," +
+                "a_r VARCHAR(20)," +
+                "a_s VARCHAR(20)," +
+                "a_t VARCHAR(20)," +
+                "a_n VARCHAR(20)," +
+                "b_r VARCHAR(20)," +
+                "b_s VARCHAR(20)," +
+                "b_t VARCHAR(20)," +
+                "b_n VARCHAR(20)," +
+                "c_r VARCHAR(20)," +
+                "c_s VARCHAR(20)," +
+                "c_t VARCHAR(20)," +
+                "c_n VARCHAR(20)," +
+                "d_r VARCHAR(20)," +
+                "d_s VARCHAR(20)," +
+                "d_t VARCHAR(20)," +
+                "d_n VARCHAR(20)," +
+                "fuse_a_r VARCHAR(20)," +
+                "fuse_a_s VARCHAR(20)," +
+                "fuse_a_t VARCHAR(20)," +
+                "no_seri VARCHAR(20)," +
+                "tanggal_pasang VARCHAR(20)," +
+                "tanggal_ganti VARCHAR(20)";
         db.execSQL(CREATE_GARDU_TABLE);
 
         final String INSERT_FIRST_ROW = "INSERT INTO credential (username, password) values ('habibie@admin.com','qwerty123')";

@@ -107,6 +107,20 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+        <activity   android:name=".controller.TeganganBeban" android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar">>
+            <intent-filter>
+                <action android:name="com.niscalindo.simantan.controller.TeganganBeban" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity   android:name=".controller.UkuranLain" android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar">>
+            <intent-filter>
+                <action android:name="com.niscalindo.simantan.controller.UkuranLain" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
         <provider
             android:name=".controller.LocationsContentProvider"
             android:authorities="com.niscalindo.simantan.locations"
