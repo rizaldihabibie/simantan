@@ -121,7 +121,7 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:padding="15dip"
-                    android:text="S_T" />
+                    android:text="S-T" />
                 <EditText
                     android:id="@+id/s_t"
                     android:layout_width="125dp"

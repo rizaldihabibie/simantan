@@ -66,9 +66,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 "fuse_a_r VARCHAR(20)," +
                 "fuse_a_s VARCHAR(20)," +
                 "fuse_a_t VARCHAR(20)," +
+                "fuse_b_r VARCHAR(20)," +
+                "fuse_b_s VARCHAR(20)," +
+                "fuse_b_t VARCHAR(20)," +
+                "fuse_c_r VARCHAR(20)," +
+                "fuse_c_s VARCHAR(20)," +
+                "fuse_c_t VARCHAR(20)," +
+                "fuse_d_r VARCHAR(20)," +
+                "fuse_d_s VARCHAR(20)," +
+                "fuse_d_t VARCHAR(20)," +
                 "no_seri VARCHAR(20)," +
                 "tanggal_pasang VARCHAR(20)," +
-                "tanggal_ganti VARCHAR(20)";
+                "tanggal_ganti VARCHAR(20))";
         db.execSQL(CREATE_GARDU_TABLE);
 
         final String INSERT_FIRST_ROW = "INSERT INTO credential (username, password) values ('habibie@admin.com','qwerty123')";

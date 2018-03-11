@@ -22,7 +22,7 @@ public class ViewDataGardu extends AppCompatActivity {
     private EditText nomorGardu, alamat, kapasitasTrafo, penyulang;
     private EditText merkTrafo, tapTrafo, jumlahJurusan, konstruksi, tanggalUkur;
     private EditText jamUkur, petugas, koordinat;
-    private Button editButton, mapButton;
+    private Button nextButton, mapButton;
     private GarduDao garduDao;
     private Context context;
     private Gardu garduMap;
@@ -53,7 +53,7 @@ public class ViewDataGardu extends AppCompatActivity {
         jamUkur = ((EditText)findViewById(R.id.jamUkur));
         petugas = ((EditText)findViewById(R.id.petugas));
         mapButton = (Button)findViewById(R.id.mapButton);
-        editButton = (Button)findViewById(R.id.editButton);
+        nextButton = (Button)findViewById(R.id.nextButton);
         mapButton.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
@@ -64,11 +64,11 @@ public class ViewDataGardu extends AppCompatActivity {
                     }
                 }
         );
-        editButton.setOnClickListener(
+        nextButton.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Intent intent = new Intent("com.niscalindo.simantan.controller.EditGardu");
+                        Intent intent = new Intent("com.niscalindo.simantan.controller.ViewTeganganBeban");
                         intent.putExtra("GARDU_DATA_SESSION", (Serializable) garduMap);
                         startActivity(intent);
                     }

@@ -119,13 +119,7 @@ public class AddGardu extends AppCompatActivity {
                             Intent intent = new Intent("com.niscalindo.simantan.controller.TeganganBeban");
                             intent.putExtra("GARDU_SESSION", (Serializable) gardu);
                             startActivity(intent);
-//                            boolean success = garduDao.saveGardu(gardu,context);
-//                            if(success){
-//                                Intent intent = new Intent("com.niscalindo.simantan.controller.GarduPage");
-//                                startActivity(intent);
-//                            }else{
-//                                Toast.makeText(context, "Something wrong", Toast.LENGTH_SHORT).show();
-//                            }
+
                         }
 
                     }

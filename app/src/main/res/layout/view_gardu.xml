@@ -213,17 +213,6 @@
             <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" >
-               <Button
-                    android:theme="@style/AppTheme.ButtonMenu"
-                    android:background="@drawable/button_save_gardu"
-                    android:id="@+id/editButton"
-                    android:layout_width="100dp"
-                    android:layout_centerInParent="true"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:text="EDIT"
-                    android:textStyle="bold"
-                   android:layout_alignParentLeft="true"/>
                 <Button
                     android:theme="@style/AppTheme.ButtonMenu"
                     android:background="@drawable/button_save_gardu"
@@ -234,7 +223,19 @@
                     android:layout_marginTop="16dp"
                     android:text="OPEN MAP"
                     android:textStyle="bold"
-                    android:layout_alignParentRight="true"/>
+                    android:layout_alignParentLeft="true"/>
+               <Button
+                    android:theme="@style/AppTheme.ButtonMenu"
+                    android:background="@drawable/button_save_gardu"
+                    android:id="@+id/nextButton"
+                    android:layout_width="100dp"
+                    android:layout_centerInParent="true"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="NEXT >"
+                    android:textStyle="bold"
+                   android:layout_alignParentRight="true"/>
+
             </RelativeLayout>
 
         </LinearLayout>
