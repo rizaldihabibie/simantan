@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.niscalindo.simantan.R;
 import com.niscalindo.simantan.database.dao.LoginDao;
@@ -45,9 +46,16 @@ public class LoginPage extends AppCompatActivity{
                         if(!cre.getUsername().equals("kosong")){
                             Intent intent = new Intent("com.niscalindo.simantan.controller.MainMenu");
                             startActivity(intent);
+                        }else{
+                            Toast.makeText(context, "Wrong Password Or Username",Toast.LENGTH_SHORT).show();
                         }
                     }
                 }
         );
+    }
+
+    @Override
+    public void onBackPressed() {
+        this.finishAffinity();
     }
 }

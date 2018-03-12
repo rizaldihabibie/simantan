@@ -1,8 +1,10 @@
 package com.niscalindo.simantan.controller;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
@@ -46,9 +48,33 @@ public class ContentGardu extends AppCompatActivity{
 
             @Override
             public void onItemClick(Gardu item) {
-                Intent intent = new Intent("com.niscalindo.simantan.controller.ViewDataGardu");
-                intent.putExtra("GARDU_DATA_SESSION", (Serializable) item);
-                startActivity(intent);
+                final CharSequence[] dialogitem = {"Lihat Data", "Open Map", "Update Data", "Hapus"};
+                AlertDialog.Builder builder = new AlertDialog.Builder(ContentGardu.this);
+                final Gardu gardu = (Gardu) item;
+                builder.setTitle("PILIHAN : ");
+                builder.setItems(dialogitem, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int item) {
+                        Intent intent;
+                        switch(item){
+                            case 0 :
+                                intent = new Intent("com.niscalindo.simantan.controller.ViewDataGardu");
+                                intent.putExtra("GARDU_DATA_SESSION", (Serializable) gardu);
+                                startActivity(intent);
+                                break;
+                            case 1 :
+                                intent = new Intent("com.niscalindo.simantan.controller.ViewMapController");
+                                intent.putExtra("GARDU_DATA_SESSION", (Serializable) gardu);
+                                startActivity(intent);
+                                break;
+                            case 2 :
+                                intent = new Intent("com.niscalindo.simantan.controller.EditGardu");
+                                intent.putExtra("GARDU_DATA_SESSION", (Serializable) gardu);
+                                startActivity(intent);
+                                break;
+                        }
+                    }
+                });
+                builder.create().show();
             }
         }));
 //        garduAdapter.notifyDataSetChanged();
@@ -60,5 +86,10 @@ public class ContentGardu extends AppCompatActivity{
                 startActivity(intent);
             }
         });
+    }
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent("com.niscalindo.simantan.controller.MainMenu");
+        startActivity(intent);
     }
 }

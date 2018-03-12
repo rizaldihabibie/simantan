@@ -7,7 +7,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.niscalindo.simantan.R;
 import com.niscalindo.simantan.database.model.Gardu;
@@ -86,8 +85,6 @@ public class ViewTeganganBeban extends AppCompatActivity {
         );
     }
     public void fillData(Gardu gardu){
-        Toast.makeText(context, "jajal ah : "+gardu.getRn() ,
-                Toast.LENGTH_SHORT).show();
         rN.setText(gardu.getRn());
         rS.setText(gardu.getRs());
         sN.setText(gardu.getSn());

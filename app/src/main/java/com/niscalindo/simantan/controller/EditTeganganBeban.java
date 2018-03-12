@@ -15,9 +15,9 @@ import com.niscalindo.simantan.database.model.Gardu;
 import java.io.Serializable;
 
 /**
- * Created by USER on 3/3/2018.
+ * Created by USER on 3/12/2018.
  */
-public class TeganganBeban extends AppCompatActivity {
+public class EditTeganganBeban extends AppCompatActivity {
     private Context context;
     private Gardu garduMap;
     private EditText rN, rS, sN,rT,tN,sT;
@@ -35,12 +35,9 @@ public class TeganganBeban extends AppCompatActivity {
         init();
         if(getIntent().hasExtra("GARDU_SESSION")){
             garduMap = (Gardu) getIntent().getSerializableExtra("GARDU_SESSION");
-        }
-        if(getIntent().hasExtra("GARDU_TEGANGAN")){
-            garduMap = (Gardu) getIntent().getSerializableExtra("GARDU_TEGANGAN");
             fillData(garduMap);
         }
-        save();
+        next();
         back();
     }
     public void fillData(Gardu gardu){
@@ -93,8 +90,7 @@ public class TeganganBeban extends AppCompatActivity {
         dT = (EditText)findViewById(R.id.d_t);
         dN = (EditText)findViewById(R.id.d_n);
     }
-
-    public void save(){
+    public void next(){
         nextButton.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
@@ -167,7 +163,7 @@ public class TeganganBeban extends AppCompatActivity {
                             garduMap.setDs(dS.getText().toString());
                             garduMap.setDt(dT.getText().toString());
                             garduMap.setDn(dN.getText().toString());
-                            Intent intent = new Intent("com.niscalindo.simantan.controller.UkuranLain");
+                            Intent intent = new Intent("com.niscalindo.simantan.controller.EditUkuranLain");
                             intent.putExtra("GARDU_SESSION", (Serializable) garduMap);
                             startActivity(intent);
                         }
@@ -183,9 +179,9 @@ public class TeganganBeban extends AppCompatActivity {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                            Intent intent = new Intent("com.niscalindo.simantan.controller.AddGardu");
-                            intent.putExtra("GARDU_AND_MAP", (Serializable) garduMap);
-                            startActivity(intent);
+                        Intent intent = new Intent("com.niscalindo.simantan.controller.EditGardu");
+                        intent.putExtra("GARDU_DATA_SESSION", (Serializable) garduMap);
+                        startActivity(intent);
                     }
 
 

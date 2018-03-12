@@ -110,19 +110,20 @@ public class EditGardu extends AppCompatActivity {
                             garduMap.setTanggalUkur(tanggalUkur.getText().toString());
                             garduMap.setJamUkur(jamUkur.getText().toString());
                             garduMap.setPetugas(petugas.getText().toString());
-                            boolean success = garduDao.updateGardu(garduMap,context);
-                            if(success){
-                                Intent intent = new Intent("com.niscalindo.simantan.controller.GarduPage");
-                                startActivity(intent);
-                            }else{
-                                Toast.makeText(context, "Something wrong", Toast.LENGTH_SHORT).show();
-                            }
+                            Intent intent = new Intent("com.niscalindo.simantan.controller.EditTeganganBeban");
+                            intent.putExtra("GARDU_SESSION", (Serializable) garduMap);
+                            startActivity(intent);
+//                            boolean success = garduDao.updateGardu(garduMap,context);
+//                            if(success){
+//                                Intent intent = new Intent("com.niscalindo.simantan.controller.GarduPage");
+//                                startActivity(intent);
+//                            }else{
+//                                Toast.makeText(context, "Something wrong", Toast.LENGTH_SHORT).show();
+//                            }
                         }
-
                     }
                 }
         );
-
     }
     public void fillData(Gardu gardu){
         nomorGardu.setText(gardu.getNomorGardu());

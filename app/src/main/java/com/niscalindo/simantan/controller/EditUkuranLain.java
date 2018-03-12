@@ -17,10 +17,9 @@ import com.niscalindo.simantan.database.model.Gardu;
 import java.io.Serializable;
 
 /**
- * Created by USER on 3/5/2018.
+ * Created by USER on 3/12/2018.
  */
-public class UkuranLain extends AppCompatActivity {
-
+public class EditUkuranLain extends AppCompatActivity {
     private Gardu garduMap;
     private Button backButton, saveButton;
     private EditText fuseAr, fuseAs, fuseAt;
@@ -37,9 +36,9 @@ public class UkuranLain extends AppCompatActivity {
         context = this;
         garduDao = new GarduDaoImpl();
         init();
-
         if(getIntent().hasExtra("GARDU_SESSION")){
             garduMap = (Gardu) getIntent().getSerializableExtra("GARDU_SESSION");
+            fillData(garduMap);
         }
         back();
         save();
@@ -64,13 +63,30 @@ public class UkuranLain extends AppCompatActivity {
         tglGanti = (EditText)findViewById(R.id.tanggalGanti);
         tglPasang = (EditText)findViewById(R.id.tanggalPasang);
     }
+    public void fillData(Gardu gardu){
+        fuseAr.setText(gardu.getFuseAr());
+        fuseAs.setText(gardu.getFuseAs());
+        fuseAt.setText(gardu.getFuseAt());
+        fuseBr.setText(gardu.getFuseBr());
+        fuseBs.setText(gardu.getFuseBs());
+        fuseBt.setText(gardu.getFuseBt());
+        fuseCr.setText(gardu.getFuseCr());
+        fuseCs.setText(gardu.getFuseCs());
+        fuseCt.setText(gardu.getFuseCt());
+        fuseDr.setText(gardu.getFuseDr());
+        fuseDs.setText(gardu.getFuseDs());
+        fuseDt.setText(gardu.getFuseDt());
+        noSeri.setText(gardu.getNoSeri());
+        tglGanti.setText(gardu.getTanggalGanti());
+        tglPasang.setText(gardu.getTanggalPasang());
+    }
     public void back(){
         backButton.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Intent intent = new Intent("com.niscalindo.simantan.controller.TeganganBeban");
-                        intent.putExtra("GARDU_TEGANGAN", (Serializable) garduMap);
+                        Intent intent = new Intent("com.niscalindo.simantan.controller.EditTeganganBeban");
+                        intent.putExtra("GARDU_SESSION", (Serializable) garduMap);
                         startActivity(intent);
                     }
 
@@ -131,7 +147,7 @@ public class UkuranLain extends AppCompatActivity {
                             garduMap.setNoSeri(noSeri.getText().toString());
                             garduMap.setTanggalGanti(tglGanti.getText().toString());
                             garduMap.setTanggalPasang(tglPasang.getText().toString());
-                            boolean success = garduDao.saveGardu(garduMap,context);
+                            boolean success = garduDao.updateGardu(garduMap,context);
                             if(success){
                                 Intent intent = new Intent("com.niscalindo.simantan.controller.ContentGardu");
                                 startActivity(intent);
@@ -145,5 +161,4 @@ public class UkuranLain extends AppCompatActivity {
         );
 
     }
-
 }
