@@ -24,7 +24,9 @@ public class ViewTeganganBeban extends AppCompatActivity {
     private EditText bR,bS, bT, bN;
     private EditText cR,cS, cT, cN;
     private EditText dR,dS, dT, dN;
+    private EditText totalR,totalS, totalT, totalN;
     private Button nextButton, backButton;
+    private Double kolomR, kolomS, kolomT, kolomN;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -63,6 +65,14 @@ public class ViewTeganganBeban extends AppCompatActivity {
         dS = (EditText)findViewById(R.id.d_s);
         dT = (EditText)findViewById(R.id.d_t);
         dN = (EditText)findViewById(R.id.d_n);
+        totalR = (EditText)findViewById(R.id.total_r);
+        totalS = (EditText)findViewById(R.id.total_s);
+        totalT = (EditText)findViewById(R.id.total_t);
+        totalN = (EditText)findViewById(R.id.total_n);
+        totalR.setEnabled(false);
+        totalN.setEnabled(false);
+        totalS.setEnabled(false);
+        totalT.setEnabled(false);
         nextButton.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
@@ -77,7 +87,7 @@ public class ViewTeganganBeban extends AppCompatActivity {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Intent intent = new Intent("com.niscalindo.simantan.controller.ViewGardu");
+                        Intent intent = new Intent("com.niscalindo.simantan.controller.ViewDataGardu");
                         intent.putExtra("GARDU_DATA_SESSION", (Serializable) gardu);
                         startActivity(intent);
                     }
@@ -107,6 +117,15 @@ public class ViewTeganganBeban extends AppCompatActivity {
         dS.setText(gardu.getDs());
         dT.setText(gardu.getDt());
         dN.setText(gardu.getDn());
+        kolomR = (Double.valueOf(aR.getText().toString())) + (Double.valueOf(bR.getText().toString())) + (Double.valueOf(cR.getText().toString())) + (Double.valueOf(dR.getText().toString()));
+        totalR.setText("" + kolomR);
+        kolomS = (Double.valueOf(aS.getText().toString())) + (Double.valueOf(bS.getText().toString())) + (Double.valueOf(cS.getText().toString())) + (Double.valueOf(dS.getText().toString()));
+        totalS.setText("" + kolomS);
+        kolomT = (Double.valueOf(aT.getText().toString())) + (Double.valueOf(bT.getText().toString())) + (Double.valueOf(cT.getText().toString())) + (Double.valueOf(dT.getText().toString()));
+        totalT.setText("" + kolomT);
+        kolomN = (Double.valueOf(aN.getText().toString())) + (Double.valueOf(bN.getText().toString())) + (Double.valueOf(cN.getText().toString())) + (Double.valueOf(dN.getText().toString()));
+        totalN.setText("" + kolomN);
+
     }
     public void setEnable(boolean con){
         rN.setEnabled(con);
@@ -132,5 +151,7 @@ public class ViewTeganganBeban extends AppCompatActivity {
         dT.setEnabled(con);
         dN.setEnabled(con);
     }
-
+    public boolean checkNumber(String input){
+        return input.matches("\\d*\\.?\\d+");
+    }
 }

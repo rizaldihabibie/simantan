@@ -158,39 +158,39 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" >
                     <TextView
-                        android:layout_width="92dp"
+                        android:layout_width="90dp"
                         android:background="@drawable/border"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:padding="15dip"
+                        android:padding="10dip"
                         android:text="JURUSAN" />
                     <TextView
                         android:layout_width="70dp"
                         android:background="@drawable/border"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:padding="15dip"
+                        android:padding="10dip"
                         android:text="R" />
                     <TextView
                         android:layout_width="70dp"
                         android:background="@drawable/border"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:padding="15dip"
+                        android:padding="10dip"
                         android:text="S" />
                     <TextView
                         android:layout_width="70dp"
                         android:background="@drawable/border"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:padding="15dip"
+                        android:padding="10dip"
                         android:text="T" />
                     <TextView
                         android:layout_width="70dp"
                         android:background="@drawable/border"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:padding="15dip"
+                        android:padding="10dip"
                         android:text="N" />
                 </TableRow>
 
@@ -202,7 +202,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" >
                     <TextView
-                        android:layout_width="92dp"
+                        android:layout_width="90dp"
                         android:background="@drawable/border"
                         android:layout_weight="1"
                         android:gravity="center"
@@ -210,28 +210,28 @@
                         android:text="A" />
                     <EditText
                         android:id="@+id/a_r"
-                        android:layout_width="70dp"
+                        android:layout_width="71dp"
                         android:background="@drawable/border"
                         android:layout_weight="1"
                         android:gravity="center"
                         android:padding="15dip" />
                     <EditText
                         android:id="@+id/a_s"
-                        android:layout_width="70dp"
+                        android:layout_width="71dp"
                         android:background="@drawable/border"
                         android:layout_weight="1"
                         android:gravity="center"
                         android:padding="15dip"/>
                     <EditText
                         android:id="@+id/a_t"
-                        android:layout_width="70dp"
+                        android:layout_width="71dp"
                         android:background="@drawable/border"
                         android:layout_weight="1"
                         android:gravity="center"
                         android:padding="15dip"/>
                     <EditText
                         android:id="@+id/a_n"
-                        android:layout_width="70dp"
+                        android:layout_width="71dp"
                         android:background="@drawable/border"
                         android:layout_weight="1"
                         android:gravity="center"
@@ -246,7 +246,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" >
                     <TextView
-                        android:layout_width="92dp"
+                        android:layout_width="90dp"
                         android:background="@drawable/border"
                         android:layout_weight="1"
                         android:gravity="center"
@@ -289,7 +289,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" >
                     <TextView
-                        android:layout_width="92dp"
+                        android:layout_width="90dp"
                         android:background="@drawable/border"
                         android:layout_weight="1"
                         android:gravity="center"
@@ -332,7 +332,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" >
                     <TextView
-                        android:layout_width="92dp"
+                        android:layout_width="90dp"
                         android:background="@drawable/border"
                         android:layout_weight="1"
                         android:gravity="center"
@@ -375,7 +375,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" >
                     <TextView
-                        android:layout_width="92dp"
+                        android:layout_width="90dp"
                         android:background="@drawable/border"
                         android:layout_weight="1"
                         android:gravity="center"
