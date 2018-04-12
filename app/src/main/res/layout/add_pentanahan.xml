@@ -1,0 +1,301 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical">
+    <ScrollView
+        android:id="@+id/login_form"
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent">
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:orientation="vertical" android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:background="@color/White">
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/header_form"
+                android:textSize="@dimen/textsizemedium"
+                android:textColor="@color/White"
+                android:text="Jumlah Gardu Terdaftar" />
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.25"
+                    android:text="Nomor Gardu" />
+                <Spinner android:id="@+id/spinner"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:drawSelectorOnTop="true"
+                    android:layout_weight="0.75"
+                    android:ems="10"/>
+                <!--<EditText-->
+                    <!--android:id="@+id/nomorGardu"-->
+                    <!--android:layout_width="0dp"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_weight="0.75"-->
+                    <!--android:ems="10" />-->
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.25"
+                    android:text="Alamat" />
+
+                <EditText
+                    android:id="@+id/alamat"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.75"
+                    android:ems="10" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.25"
+                    android:text="Penyulang" />
+
+                <EditText
+                    android:id="@+id/penyulang"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.75"
+                    android:ems="10" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.25"
+                    android:text="Tanggal Ukur" />
+
+                <EditText
+                    android:id="@+id/tanggalUkur"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.75"
+                    android:ems="10" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.25"
+                    android:text="Petugas" />
+
+                <EditText
+                    android:id="@+id/petugas"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.75"
+                    android:ems="10" />
+            </LinearLayout>
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/header_form"
+                android:textSize="@dimen/textsize"
+                android:textColor="@color/White"
+                android:text="Pengukuran Pentanahan" />
+            <TableLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/border"
+                android:padding="5dp" >
+
+                <TableRow
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" >
+                    <TableRow
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+                        <TextView
+                            android:layout_width="170dp"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:padding="10dip"
+                            android:text="DATA" />
+                        <TextView
+                            android:layout_width="70dp"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:padding="10dip"
+                            android:text="NILAI" />
+                        <TextView
+                            android:layout_width="70dp"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:padding="10dip"
+                            android:text="KONDISI" />
+                    </TableRow>
+
+                </TableRow>
+                <TableRow
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" >
+                    <TableRow
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+                        <TextView
+                            android:layout_width="170dp"
+                            android:layout_weight="1"
+                            android:gravity="left"
+                            android:padding="15dip"
+                            android:text="Pentanahan Netral" />
+                        <EditText
+                            android:id="@+id/nilai_netral"
+                            android:layout_width="71dp"
+                            android:background="@drawable/border"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:padding="15dip" />
+                        <EditText
+                            android:id="@+id/kondisi_netral"
+                            android:layout_width="71dp"
+                            android:background="@drawable/border"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:padding="15dip"/>
+                    </TableRow>
+                </TableRow>
+                <TableRow
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" >
+                    <TableRow
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+                        <TextView
+                            android:layout_width="170dp"                            android:layout_weight="1"
+                            android:gravity="left"
+                            android:padding="15dip"
+                            android:text="Pentanahan Arrester" />
+                        <EditText
+                            android:id="@+id/nilai_arrester"
+                            android:layout_width="70dp"
+                            android:background="@drawable/border"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:padding="15dip" />
+                        <EditText
+                            android:id="@+id/kondisi_arrester"
+                            android:layout_width="70dp"
+                            android:background="@drawable/border"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:padding="15dip"/>
+                    </TableRow>
+                </TableRow>
+                <TableRow
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" >
+                    <TableRow
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+                        <TextView
+                            android:layout_width="170dp"
+                            android:layout_weight="1"
+                            android:gravity="left"
+                            android:padding="15dip"
+                            android:text="Pentanahan Body Trafo" />
+                        <EditText
+                            android:id="@+id/nilai_body_trafo"
+                            android:layout_width="70dp"
+                            android:background="@drawable/border"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:padding="15dip" />
+                        <EditText
+                            android:id="@+id/kondisi_body_trafo"
+                            android:layout_width="70dp"
+                            android:background="@drawable/border"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:padding="15dip"/>
+                    </TableRow>
+                </TableRow>
+                <TableRow
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" >
+                    <TableRow
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+                        <TextView
+                            android:layout_width="170dp"
+                            android:layout_weight="1"
+                            android:gravity="left"
+                            android:padding="15dip"
+                            android:text="Pentanahan TR Ujung" />
+                        <EditText
+                            android:id="@+id/nilai_tr_ujung"
+                            android:layout_width="70dp"
+                            android:background="@drawable/border"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:padding="15dip" />
+                        <EditText
+                            android:id="@+id/kondisi_tr_ujung"
+                            android:layout_width="70dp"
+                            android:background="@drawable/border"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:padding="15dip"/>
+                    </TableRow>
+                </TableRow>
+            </TableLayout>
+            <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical|center_horizontal">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_centerHorizontal="true">
+                    <Button
+                        android:theme="@style/AppTheme.ButtonMenu"
+                        android:background="@drawable/button_save_gardu"
+                        android:id="@+id/backButton"
+                        android:layout_centerInParent="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:text=" &lt; BACK"
+                        android:textStyle="bold" />
+                    <Button
+                        android:theme="@style/AppTheme.ButtonMenu"
+                        android:background="@drawable/button_save_gardu"
+                        android:id="@+id/saveButton"
+                        android:layout_marginLeft="16dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:text="SAVE"
+                        android:textStyle="bold" />
+                </LinearLayout>
+            </RelativeLayout>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

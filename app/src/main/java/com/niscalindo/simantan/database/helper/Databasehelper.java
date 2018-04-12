@@ -79,7 +79,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 "tanggal_pasang VARCHAR(20)," +
                 "tanggal_ganti VARCHAR(20))";
         db.execSQL(CREATE_GARDU_TABLE);
-
+        final String CREATE_PENTANAHAN_TABLE = "CREATE TABLE pentanahan (" +
+                "id INTEGER PRIMARY KEY autoincrement," +
+                "id_gardu INTEGER," +
+                "nilai_netral VARCHAR(20)," +
+                "nilai_arrester VARCHAR(20)," +
+                "nilai_body_trafo VARCHAR(20)," +
+                "nilai_tr_ujung VARCHAR(20)," +
+                "kondisi_netral VARCHAR(20)," +
+                "kondisi_arrester VARCHAR(20)," +
+                "kondisi_body_trafo VARCHAR(20)," +
+                "kondisi_tr_ujung VARCHAR(20))";
+        db.execSQL(CREATE_PENTANAHAN_TABLE);
         final String INSERT_FIRST_ROW = "INSERT INTO credential (username, password) values ('habibie@admin.com','qwerty123')";
         db.execSQL(INSERT_FIRST_ROW);
 

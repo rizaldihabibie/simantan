@@ -1,11 +1,13 @@
 package com.niscalindo.simantan.controller;
 
+import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -15,6 +17,7 @@ import com.niscalindo.simantan.database.dao.dao.impl.GarduDaoImpl;
 import com.niscalindo.simantan.database.model.Gardu;
 
 import java.io.Serializable;
+import java.util.Calendar;
 
 /**
  * Created by USER on 3/12/2018.
@@ -29,6 +32,7 @@ public class EditUkuranLain extends AppCompatActivity {
     private EditText noSeri, tglPasang, tglGanti;
     private Context context;
     private GarduDao garduDao;
+    public DatePickerDialog datePickerDialog;
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -62,6 +66,60 @@ public class EditUkuranLain extends AppCompatActivity {
         noSeri = (EditText)findViewById(R.id.nomorSeri);
         tglGanti = (EditText)findViewById(R.id.tanggalGanti);
         tglPasang = (EditText)findViewById(R.id.tanggalPasang);
+        tglPasang.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if(hasFocus){
+                    final Calendar calendar = Calendar.getInstance();
+                    int year = calendar.get(Calendar.YEAR);
+                    int month = calendar.get(Calendar.MONTH);
+                    int day = calendar.get(Calendar.DAY_OF_MONTH);
+                    datePickerDialog = new DatePickerDialog(EditUkuranLain.this,new DatePickerDialog.OnDateSetListener(){
+                        @Override
+                        public void onDateSet(DatePicker view, int year,
+                                              int monthOfYear, int dayOfMonth) {
+                            // set day of month , month and year value in the edit text
+                            tglPasang.setText(dayOfMonth + "/"
+                                    + (monthOfYear + 1) + "/" + year);
+
+                        }
+                    },year,month, day);
+                    datePickerDialog.show();
+                }
+            }
+
+//            @Override
+//            public void onClick(View v) {
+//
+//            }
+        });
+        tglGanti.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if(hasFocus){
+                    final Calendar calendar = Calendar.getInstance();
+                    int year = calendar.get(Calendar.YEAR);
+                    int month = calendar.get(Calendar.MONTH);
+                    int day = calendar.get(Calendar.DAY_OF_MONTH);
+                    datePickerDialog = new DatePickerDialog(EditUkuranLain.this,new DatePickerDialog.OnDateSetListener(){
+                        @Override
+                        public void onDateSet(DatePicker view, int year,
+                                              int monthOfYear, int dayOfMonth) {
+                            // set day of month , month and year value in the edit text
+                            tglGanti.setText(dayOfMonth + "/"
+                                    + (monthOfYear + 1) + "/" + year);
+
+                        }
+                    },year,month, day);
+                    datePickerDialog.show();
+                }
+            }
+
+//            @Override
+//            public void onClick(View v) {
+//
+//            }
+        });
     }
     public void fillData(Gardu gardu){
         fuseAr.setText(gardu.getFuseAr());

@@ -2,10 +2,15 @@ package com.niscalindo.simantan.controller;
 
 import android.content.Context;
 import android.content.Intent;
+import android.location.Location;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -21,30 +26,67 @@ import java.io.Serializable;
 /**
  * Created by USER on 2/4/2018.
  */
-public class MapController extends AppCompatActivity implements OnMapReadyCallback {
+public class MapController extends AppCompatActivity implements OnMapReadyCallback, GoogleApiClient.ConnectionCallbacks,
+        GoogleApiClient.OnConnectionFailedListener {
 
     GoogleMap gMap;
     Context cob = this;
     String action = "";
     private Gardu gardu;
-    @Override        protected void onCreate (Bundle savedInstanceState){
+    private Context context;
+    private GoogleApiClient mGoogleApiClient;
+    private Location mLastLocation;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.map_activity);
         SupportMapFragment mapFragment = (SupportMapFragment)
                 getSupportFragmentManager()
                         .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
-        gardu = (Gardu)getIntent().getSerializableExtra("GARDU_SESSION");
-        action = (String)getIntent().getStringExtra("SESSION");
-        Toast.makeText(cob, gardu.getNomorGardu() ,
+
+        context = this;
+        gardu = (Gardu) getIntent().getSerializableExtra("GARDU_SESSION");
+        action = (String) getIntent().getStringExtra("SESSION");
+        Toast.makeText(cob, gardu.getNomorGardu(),
                 Toast.LENGTH_SHORT).show();
     }
-    @Override    public void onMapReady(GoogleMap googleMap)
-    {
+
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
+
         gMap = googleMap;
-        LatLng jaipur = new LatLng(-6.9861652,110.380033);
+        LatLng current;
+//        if (mGoogleApiClient == null) {
+//            mGoogleApiClient = new GoogleApiClient.Builder(this)
+//                    .addConnectionCallbacks(this)
+//                    .addOnConnectionFailedListener(this)
+//                    .addApi(LocationServices.API)
+//                    .build();
+//        }
+//        if (mGoogleApiClient != null) {
+//            mGoogleApiClient.connect();
+//            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+//                // TODO: Consider calling
+//                //    ActivityCompat#requestPermissions
+//                // here to request the missing permissions, and then overriding
+//                //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+//                //                                          int[] grantResults)
+//                // to handle the case where the user grants the permission. See the documentation
+//                // for ActivityCompat#requestPermissions for more details.
+//                return;
+//            }
+//            mLastLocation = LocationServices.FusedLocationApi.getLastLocation(
+//                    mGoogleApiClient);
+//            current  = new LatLng(mLastLocation.getLatitude(),mLastLocation.getLongitude());
+//        }else{
+            current = new LatLng(-6.9861652,110.380033);
+//        }
+
+
         CameraPosition cameraPosition = CameraPosition.builder()
-                .zoom(17).tilt(20).bearing(90).target(jaipur).build();
+                .zoom(17).tilt(20).bearing(90).target(current).build();
         gMap.moveCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
         gMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
             @Override            public void onMapClick(LatLng point) {
@@ -87,5 +129,21 @@ public class MapController extends AppCompatActivity implements OnMapReadyCallba
         MarkerOptions markerOptions = new MarkerOptions();
         markerOptions.position(point);
         gMap.addMarker(markerOptions);
+    }
+
+    @Override
+    public void onConnected(@Nullable Bundle bundle) {
+
+    }
+
+    @Override
+    public void onConnectionSuspended(int i) {
+
+    }
+
+    @Override
+    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
+        Toast.makeText(cob, "Error Get Current Location" ,
+                Toast.LENGTH_SHORT).show();
     }
 }

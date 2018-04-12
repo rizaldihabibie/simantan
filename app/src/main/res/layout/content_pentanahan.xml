@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <android.support.design.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
@@ -13,6 +12,7 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:background="@drawable/gardu_page"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:showIn="@layout/app_pentanahan_main"
     tools:context=".controller.ContentGardu" >
 
     <android.support.v7.widget.RecyclerView

@@ -12,6 +12,8 @@ import com.niscalindo.simantan.R;
 import com.niscalindo.simantan.database.model.Gardu;
 
 import java.io.Serializable;
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
 
 /**
  * Created by USER on 3/11/2018.
@@ -27,12 +29,15 @@ public class ViewTeganganBeban extends AppCompatActivity {
     private EditText totalR,totalS, totalT, totalN;
     private Button nextButton, backButton;
     private Double kolomR, kolomS, kolomT, kolomN;
+    private DecimalFormat df;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.tegangan_beban);
         context = this;
+        df = new DecimalFormat("#.###");
+        df.setRoundingMode(RoundingMode.CEILING);
         init();
         if(getIntent().hasExtra("GARDU_DATA_SESSION")){
             gardu = (Gardu) getIntent().getSerializableExtra("GARDU_DATA_SESSION");
@@ -118,13 +123,13 @@ public class ViewTeganganBeban extends AppCompatActivity {
         dT.setText(gardu.getDt());
         dN.setText(gardu.getDn());
         kolomR = (Double.valueOf(aR.getText().toString())) + (Double.valueOf(bR.getText().toString())) + (Double.valueOf(cR.getText().toString())) + (Double.valueOf(dR.getText().toString()));
-        totalR.setText("" + kolomR);
+        totalR.setText("" + df.format(kolomR));
         kolomS = (Double.valueOf(aS.getText().toString())) + (Double.valueOf(bS.getText().toString())) + (Double.valueOf(cS.getText().toString())) + (Double.valueOf(dS.getText().toString()));
-        totalS.setText("" + kolomS);
+        totalS.setText("" + df.format(kolomS));
         kolomT = (Double.valueOf(aT.getText().toString())) + (Double.valueOf(bT.getText().toString())) + (Double.valueOf(cT.getText().toString())) + (Double.valueOf(dT.getText().toString()));
-        totalT.setText("" + kolomT);
+        totalT.setText("" + df.format(kolomT));
         kolomN = (Double.valueOf(aN.getText().toString())) + (Double.valueOf(bN.getText().toString())) + (Double.valueOf(cN.getText().toString())) + (Double.valueOf(dN.getText().toString()));
-        totalN.setText("" + kolomN);
+        totalN.setText("" + df.format(kolomN));
 
     }
     public void setEnable(boolean con){

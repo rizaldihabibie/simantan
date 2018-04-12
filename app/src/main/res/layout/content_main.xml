@@ -14,7 +14,7 @@
     tools:context=".controller.MainActivity">
 
     <TextView
-        android:text="Hello World!"
+        android:text="SELAMAT DATANG DI APLIKASI SIMANTAN V.1 !!"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 </RelativeLayout>

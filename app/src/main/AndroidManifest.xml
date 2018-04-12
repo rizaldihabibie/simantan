@@ -101,6 +101,20 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+        <activity   android:name=".controller.ContentPentanahan" android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar">>
+            <intent-filter>
+                <action android:name="com.niscalindo.simantan.controller.ContentPentanahan" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity   android:name=".controller.AddPentanahan" android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar">>
+            <intent-filter>
+                <action android:name="com.niscalindo.simantan.controller.AddPentanahan" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
         <activity   android:name=".controller.EditGardu" android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">>
             <intent-filter>
@@ -126,6 +140,20 @@
             android:theme="@style/AppTheme.NoActionBar">>
             <intent-filter>
                 <action android:name="com.niscalindo.simantan.controller.ViewTeganganBeban" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity   android:name=".controller.ViewPentanahan" android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar">>
+            <intent-filter>
+                <action android:name="com.niscalindo.simantan.controller.ViewPentanahan" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity   android:name=".controller.EditPentanahan" android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar">>
+            <intent-filter>
+                <action android:name="com.niscalindo.simantan.controller.EditPentanahan" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
