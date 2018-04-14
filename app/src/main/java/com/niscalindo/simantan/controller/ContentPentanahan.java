@@ -1,11 +1,13 @@
 package com.niscalindo.simantan.controller;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
@@ -13,7 +15,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
@@ -33,9 +37,10 @@ public class ContentPentanahan extends AppCompatActivity implements NavigationVi
 
 private PentanahanDao pentanahanDao;
 private List<Pentanahan> data;
-private GarduAdapter garduAdapter;
+private PentanahanAdapter pentanahanAdapter;
 private RecyclerView recyclerView;
 private FloatingActionButton fab;
+        private Context context;
 
 @Override
 protected void onCreate(Bundle savedInstanceState){
@@ -50,38 +55,36 @@ protected void onCreate(Bundle savedInstanceState){
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.addItemDecoration(new Devider(this, LinearLayoutManager.VERTICAL,16));
+        context = this;
+        pentanahanAdapter = new PentanahanAdapter(data, new PentanahanAdapter.OnItemClickListener(){
 
-        recyclerView.setAdapter(new PentanahanAdapter(data, new PentanahanAdapter.OnItemClickListener(){
-
-@Override
-public void onItemClick(Pentanahan item) {
-        final CharSequence[] dialogitem = {"Lihat Data", "Update Data", "Hapus"};
-        AlertDialog.Builder builder = new AlertDialog.Builder(ContentPentanahan.this);
-        final Pentanahan pentanahan = (Pentanahan) item;
-        builder.setTitle("PILIHAN : ");
-        builder.setItems(dialogitem, new DialogInterface.OnClickListener() {
-public void onClick(DialogInterface dialog, int item) {
-        Intent intent;
-        switch(item){
-        case 0 :
-        intent = new Intent("com.niscalindo.simantan.controller.ViewPentanahan");
-        intent.putExtra("PENTANAHAN_SESSION", (Serializable) pentanahan);
-        startActivity(intent);
-        break;
-        case 1 :
-        intent = new Intent("com.niscalindo.simantan.controller.EditPentanahan");
-        intent.putExtra("PENTANAHAN_SESSION", (Serializable) pentanahan);
-        startActivity(intent);
-        break;
-        }
-        }
+                @Override
+                public void onItemClick(Pentanahan item) {
+                        final CharSequence[] dialogitem = {"Lihat Data", "Update Data", "Hapus"};
+                        AlertDialog.Builder builder = new AlertDialog.Builder(ContentPentanahan.this);
+                        final Pentanahan pentanahan = (Pentanahan) item;
+                        builder.setTitle("PILIHAN : ");
+                        builder.setItems(dialogitem, new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int item) {
+                                        Intent intent;
+                                        switch(item){
+                                                case 0 :
+                                                        intent = new Intent("com.niscalindo.simantan.controller.ViewPentanahan");
+                                                        intent.putExtra("PENTANAHAN_SESSION", (Serializable) pentanahan);
+                                                        startActivity(intent);
+                                                        break;
+                                                case 1 :
+                                                        intent = new Intent("com.niscalindo.simantan.controller.EditPentanahan");
+                                                        intent.putExtra("PENTANAHAN_SESSION", (Serializable) pentanahan);
+                                                        startActivity(intent);
+                                                        break;
+                                        }
+                                }
+                        });
+                        builder.create().show();
+                }
         });
-        builder.create().show();
-        }
-        }));
-//        garduAdapter.notifyDataSetChanged();
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-
+        recyclerView.setAdapter(pentanahanAdapter);
         fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
 @Override
@@ -127,7 +130,24 @@ public void onClick(View view) {
                 getMenuInflater().inflate(R.menu.search_menu, menu);
                 MenuItem menuItem = menu.findItem(R.id.action_search);
                 SearchView searchView = (SearchView) MenuItemCompat.getActionView(menuItem);
-                searchView.setOnQueryTextListener(this);
+                search(searchView);
                 return true;
         }
+        private void search(SearchView searchView) {
+
+                searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+                        @Override
+                        public boolean onQueryTextSubmit(String query) {
+                                return false;
+                        }
+
+                        @Override
+                        public boolean onQueryTextChange(String newText) {
+                                pentanahanAdapter.setContext(context);
+                                pentanahanAdapter.getFilter().filter(newText);
+                                return true;
+                        }
+                });
+        }
+
 }

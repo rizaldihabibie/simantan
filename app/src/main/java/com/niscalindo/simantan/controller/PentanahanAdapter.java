@@ -1,22 +1,66 @@
 package com.niscalindo.simantan.controller;
 
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.TextView;
 
 import com.niscalindo.simantan.R;
 import com.niscalindo.simantan.database.model.Pentanahan;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by USER on 4/4/2018.
  */
-public class PentanahanAdapter  extends RecyclerView.Adapter<PentanahanAdapter.MyViewHolder>  {
+public class PentanahanAdapter  extends RecyclerView.Adapter<PentanahanAdapter.MyViewHolder> implements Filterable {
     private List<Pentanahan> listPentanahan;
+    private List<Pentanahan> searchResult;
     private OnItemClickListener listener;
+    private Context context;
+
+    @Override
+    public Filter getFilter() {
+        return new Filter() {
+            @Override
+            protected FilterResults performFiltering(CharSequence charSequence) {
+
+                String charString = charSequence.toString();
+
+
+                if (charString.isEmpty()) {
+                    searchResult = listPentanahan;
+                } else {
+
+                    ArrayList<Pentanahan> filteredList = new ArrayList<>();
+
+                    for (Pentanahan pentanahan : listPentanahan) {
+
+                        if (pentanahan.getGardu().getNomorGardu().toLowerCase().contains(charString) || pentanahan.getGardu().getAlamat().toLowerCase().contains(charString)) {
+                            filteredList.add(pentanahan);
+                        }
+                    }
+
+                    searchResult = filteredList;
+                }
+
+                FilterResults filterResults = new FilterResults();
+                filterResults.values = searchResult;
+                return filterResults;
+            }
+
+            @Override
+            protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+                searchResult = (ArrayList<Pentanahan>) filterResults.values;
+                notifyDataSetChanged();
+            }
+        };
+    }
 
     public interface OnItemClickListener{
         void onItemClick(Pentanahan item);
@@ -24,6 +68,7 @@ public class PentanahanAdapter  extends RecyclerView.Adapter<PentanahanAdapter.M
 
     public PentanahanAdapter(List<Pentanahan> listPentanahan, OnItemClickListener listener){
         this.listPentanahan = listPentanahan;
+        this.searchResult = listPentanahan;
         this.listener = listener;
     }
 
@@ -35,16 +80,15 @@ public class PentanahanAdapter  extends RecyclerView.Adapter<PentanahanAdapter.M
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
-        holder.bind(listPentanahan.get(position),listener);
-        Pentanahan pentanahan = listPentanahan.get(position);
+        holder.bind(searchResult.get(position),listener);
+        Pentanahan pentanahan = searchResult.get(position);
 
 
     }
 
     @Override
     public int getItemCount() {
-
-        return listPentanahan.size();
+        return searchResult.size();
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder{
@@ -66,5 +110,9 @@ public class PentanahanAdapter  extends RecyclerView.Adapter<PentanahanAdapter.M
             });
         }
 
+    }
+
+    public void setContext(Context context){
+        this.context = context;
     }
 }

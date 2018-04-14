@@ -1,5 +1,6 @@
 package com.niscalindo.simantan.controller;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -32,13 +33,14 @@ import java.util.List;
 /**
  * Created by USER on 2/19/2018.
  */
-public class ContentGardu extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, SearchView.OnQueryTextListener {
+public class ContentGardu extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private GarduDao garduDao;
     private List<Gardu> data;
     private GarduAdapter garduAdapter;
     private RecyclerView recyclerView;
     private FloatingActionButton fab;
+    private Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -47,13 +49,12 @@ public class ContentGardu extends AppCompatActivity implements NavigationView.On
         garduDao = new GarduDaoImpl();
         data = garduDao.getAllData(this);
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
-
+        context = this;
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.addItemDecoration(new Devider(this, LinearLayoutManager.VERTICAL,16));
-
-        recyclerView.setAdapter(new GarduAdapter(data, new GarduAdapter.OnItemClickListener(){
+        garduAdapter = new GarduAdapter(data, new GarduAdapter.OnItemClickListener(){
 
             @Override
             public void onItemClick(Gardu item) {
@@ -85,7 +86,8 @@ public class ContentGardu extends AppCompatActivity implements NavigationView.On
                 });
                 builder.create().show();
             }
-        }));
+        });
+        recyclerView.setAdapter(garduAdapter);
 //        garduAdapter.notifyDataSetChanged();
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -134,18 +136,24 @@ public class ContentGardu extends AppCompatActivity implements NavigationView.On
         getMenuInflater().inflate(R.menu.search_menu, menu);
         MenuItem menuItem = menu.findItem(R.id.action_search);
         SearchView searchView = (SearchView) MenuItemCompat.getActionView(menuItem);
-        searchView.setOnQueryTextListener(this);
+        search(searchView);
         return true;
     }
 
-    @Override
-    public boolean onQueryTextChange(String query) {
-        // Here is where we are going to implement the filter logic
-        return false;
-    }
+    private void search(SearchView searchView) {
 
-    @Override
-    public boolean onQueryTextSubmit(String query) {
-        return false;
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                garduAdapter.setContext(context);
+                garduAdapter.getFilter().filter(newText);
+                return true;
+            }
+        });
     }
 }
