@@ -9,7 +9,7 @@ import android.database.sqlite.SQLiteOpenHelper;
  */
 public class DatabaseHelper extends SQLiteOpenHelper {
 
-    private static final int DATABASE_VERSION = 2;
+    private static final int DATABASE_VERSION = 1;
     static final String DATABASE_NAME = "simantan.db";
 
 
@@ -77,7 +77,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 "fuse_d_t VARCHAR(20)," +
                 "no_seri VARCHAR(20)," +
                 "tanggal_pasang VARCHAR(20)," +
-                "tanggal_ganti VARCHAR(20))";
+                "tanggal_ganti VARCHAR(20)," +
+                "waktu VARCHAR(20))";
         db.execSQL(CREATE_GARDU_TABLE);
         final String CREATE_PENTANAHAN_TABLE = "CREATE TABLE pentanahan (" +
                 "id INTEGER PRIMARY KEY autoincrement," +

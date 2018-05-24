@@ -59,6 +59,7 @@ public class Gardu implements Serializable {
     private String noSeri;
     private String tanggalPasang;
     private String tanggalGanti;
+    private String waktu;
 
     @Override
     public String toString() {
@@ -479,5 +480,13 @@ public class Gardu implements Serializable {
 
     public void setTanggalGanti(String tanggalGanti) {
         this.tanggalGanti = tanggalGanti;
+    }
+
+    public String getWaktu() {
+        return waktu;
+    }
+
+    public void setWaktu(String waktu) {
+        this.waktu = waktu;
     }
 }

@@ -21,7 +21,7 @@ import java.io.Serializable;
 public class ViewDataGardu extends AppCompatActivity {
     private EditText nomorGardu, alamat, kapasitasTrafo, penyulang;
     private EditText merkTrafo, tapTrafo, jumlahJurusan, konstruksi, tanggalUkur;
-    private EditText jamUkur, petugas, koordinat;
+    private EditText jamUkur, petugas, waktu;
     private Button nextButton, mapButton;
     private GarduDao garduDao;
     private Context context;
@@ -42,6 +42,7 @@ public class ViewDataGardu extends AppCompatActivity {
 
     public void init(){
         nomorGardu =((EditText)findViewById(R.id.nomorGardu));
+        waktu =((EditText)findViewById(R.id.waktu));
         alamat = ((EditText)findViewById(R.id.alamat));
         kapasitasTrafo = ((EditText)findViewById(R.id.kapasitasTrafo));
         penyulang = ((EditText)findViewById(R.id.penyulang));
@@ -99,5 +100,7 @@ public class ViewDataGardu extends AppCompatActivity {
         jamUkur.setEnabled(false);
         petugas.setText(gardu.getPetugas());
         petugas.setEnabled(false);
+        waktu.setText(gardu.getWaktu());
+        waktu.setEnabled(false);
     }
 }

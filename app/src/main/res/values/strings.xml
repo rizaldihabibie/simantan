@@ -22,4 +22,9 @@
     </string>
     <string name="app_title"><u>SIMANTAN</u></string>
     <string name="stand_for"><u>SISTEM MANAJEMEN JARINGAN</u></string>
+    <string-array name="time_array">
+        <item>Pagi</item>
+        <item>Siang</item>
+        <item>Malam</item>
+    </string-array>
 </resources>

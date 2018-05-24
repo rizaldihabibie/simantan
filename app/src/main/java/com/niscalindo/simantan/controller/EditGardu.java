@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.niscalindo.simantan.R;
@@ -30,6 +31,7 @@ public class EditGardu extends AppCompatActivity {
     private GarduDao garduDao;
     private Context context;
     private Gardu garduMap;
+    private Spinner waktu;
     public DatePickerDialog datePickerDialog;
 
     @Override
@@ -46,6 +48,7 @@ public class EditGardu extends AppCompatActivity {
     }
 
     public void init(){
+        waktu = ((Spinner)findViewById(R.id.waktu));
         nomorGardu =((EditText)findViewById(R.id.nomorGardu));
         alamat = ((EditText)findViewById(R.id.alamat));
         kapasitasTrafo = ((EditText)findViewById(R.id.kapasitasTrafo));
@@ -102,6 +105,8 @@ public class EditGardu extends AppCompatActivity {
                             Toast.makeText(context, "Mohon Pilih Map", Toast.LENGTH_SHORT).show();
                         }else if(garduMap.getLongitude().equals("")){
                             Toast.makeText(context, "Mohon Pilih Map", Toast.LENGTH_SHORT).show();
+                        }else if(waktu.getSelectedItem().toString().equals("")){
+                            Toast.makeText(context, "Isi waktu", Toast.LENGTH_SHORT).show();
                         }else {
                             garduMap.setNomorGardu(nomorGardu.getText().toString());
                             garduMap.setAlamat(alamat.getText().toString());
@@ -114,6 +119,7 @@ public class EditGardu extends AppCompatActivity {
                             garduMap.setTanggalUkur(tanggalUkur.getText().toString());
                             garduMap.setJamUkur(jamUkur.getText().toString());
                             garduMap.setPetugas(petugas.getText().toString());
+                            garduMap.setWaktu(waktu.getSelectedItem().toString());
                             Intent intent = new Intent("com.niscalindo.simantan.controller.EditTeganganBeban");
                             intent.putExtra("GARDU_SESSION", (Serializable) garduMap);
                             startActivity(intent);

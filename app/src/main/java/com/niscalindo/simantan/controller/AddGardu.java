@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.niscalindo.simantan.R;
@@ -27,6 +28,7 @@ public class AddGardu extends AppCompatActivity {
     private EditText merkTrafo, tapTrafo, jumlahJurusan, konstruksi, tanggalUkur;
     private EditText jamUkur, petugas, koordinat;
     private Button saveButton, mapButton;
+    private Spinner waktu;
     private GarduDao garduDao;
     private Context context;
     private Gardu garduMap;
@@ -56,7 +58,6 @@ public class AddGardu extends AppCompatActivity {
         tanggalUkur.setText(gardu.getTanggalUkur());
         jamUkur.setText(gardu.getJamUkur());
         petugas.setText(gardu.getPetugas());
-
     }
     public void init(){
         nomorGardu =((EditText)findViewById(R.id.nomorGardu));
@@ -70,6 +71,7 @@ public class AddGardu extends AppCompatActivity {
         tanggalUkur = ((EditText)findViewById(R.id.tanggalUkur));
         jamUkur = ((EditText)findViewById(R.id.jamUkur));
         petugas = ((EditText)findViewById(R.id.petugas));
+        waktu = ((Spinner)findViewById(R.id.waktu));
 
         saveButton = (Button)findViewById(R.id.saveButton);
         saveButton.setOnClickListener(
@@ -105,6 +107,8 @@ public class AddGardu extends AppCompatActivity {
                             Toast.makeText(context, "Mohon Pilih Map", Toast.LENGTH_SHORT).show();
                         }else if(garduMap.getLongitude().equals("")){
                             Toast.makeText(context, "Mohon Pilih Map", Toast.LENGTH_SHORT).show();
+                        }else if(waktu.getSelectedItem().toString().equals("")){
+                            Toast.makeText(context, "Isi waktu", Toast.LENGTH_SHORT).show();
                         }else {
                             Gardu gardu = new Gardu();
                             gardu.setNomorGardu(nomorGardu.getText().toString());
@@ -120,6 +124,7 @@ public class AddGardu extends AppCompatActivity {
                             gardu.setPetugas(petugas.getText().toString());
                             gardu.setLongitude(garduMap.getLongitude());
                             gardu.setLatitude(garduMap.getLatitude());
+                            gardu.setWaktu(waktu.getSelectedItem().toString());
                             Intent intent = new Intent("com.niscalindo.simantan.controller.TeganganBeban");
                             intent.putExtra("GARDU_SESSION", (Serializable) gardu);
                             startActivity(intent);

@@ -74,7 +74,7 @@ public class GarduDaoImpl implements GarduDao {
         contentValues.put("no_seri",gardu.getNoSeri());
         contentValues.put("tanggal_pasang",gardu.getTanggalPasang());
         contentValues.put("tanggal_ganti",gardu.getTanggalGanti());
-
+        contentValues.put("waktu",gardu.getWaktu());
 //        db.execSQL("INSERT into gardu (nomor_gardu,alamat,kapasitas_trafo,penyulang,merk_trafo,tap_trafo,jumlah_jurusan,konstruksi,tanggal_ukur, jam_ukur,petugas,koordinat) VALUES (" +
 //                "= '"+gardu.getNomorGardu()+"','"+gardu.getAlamat()+"','"+gardu.getKapasitasTrafo()+"','"+gardu.getPenyulang()+"','"+gardu.getMerkTrafo()+"','"+gardu.getTapTrafo()+"','"+gardu.getJumlahJurusan()+"','"+gardu.getKonstruksi()+"','"+gardu.getTanggalUkur()+"','"+gardu.getJamUkur()+"','"+gardu.getPetugas()+"','"+gardu.getKoordinat()+"",null);
         long insertedId = db.insert("gardu",null,contentValues);
@@ -168,6 +168,7 @@ public class GarduDaoImpl implements GarduDao {
             gardu.setNoSeri(cursor.getString(49).toString());
             gardu.setTanggalPasang(cursor.getString(50).toString());
             gardu.setTanggalGanti(cursor.getString(51).toString());
+            gardu.setWaktu(cursor.getString(52).toString());
             data.add(gardu);
 
         }
@@ -231,6 +232,7 @@ public class GarduDaoImpl implements GarduDao {
         contentValues.put("no_seri",gardu.getNoSeri());
         contentValues.put("tanggal_pasang",gardu.getTanggalPasang());
         contentValues.put("tanggal_ganti",gardu.getTanggalGanti());
+        contentValues.put("waktu",gardu.getWaktu());
 
         String where = "id = ?";
 
