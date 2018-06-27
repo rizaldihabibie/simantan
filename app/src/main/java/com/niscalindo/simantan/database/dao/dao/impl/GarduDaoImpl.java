@@ -108,7 +108,6 @@ public class GarduDaoImpl implements GarduDao {
     @Override
     public List<Gardu> getAllData(Context context) {
         List<Gardu> data = new ArrayList<>();
-//        try{
         dbHelper = new DatabaseHelper(context);
         SQLiteDatabase db = dbHelper.getReadableDatabase();
         cursor = db.rawQuery("SELECT * FROM gardu",null);
@@ -170,10 +169,8 @@ public class GarduDaoImpl implements GarduDao {
             gardu.setTanggalGanti(cursor.getString(51).toString());
             gardu.setWaktu(cursor.getString(52).toString());
             data.add(gardu);
-
         }
         return data;
-
     }
 
     @Override
@@ -241,5 +238,21 @@ public class GarduDaoImpl implements GarduDao {
         db.close();
 
         return updateSuccessful;
+    }
+
+    @Override
+    public boolean deleteData(String id, Context context)
+    {
+        boolean deleteSuccess;
+        dbHelper = new DatabaseHelper(context);
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        deleteSuccess = db.delete("gardu","id =" + id, null) > 0;
+        if(deleteSuccess){
+            deleteSuccess = db.delete("pentanahan","id_gardu = " + id, null)>0;
+            return deleteSuccess;
+        }else{
+            return false;
+        }
+
     }
 }

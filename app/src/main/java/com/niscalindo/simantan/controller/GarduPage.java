@@ -1,5 +1,6 @@
 package com.niscalindo.simantan.controller;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -27,10 +28,12 @@ public class GarduPage extends AppCompatActivity{
     private GarduDao garduDao;
     private List<Gardu> data;
     private FloatingActionButton fab;
+    private Context context;
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.list_gardu);
+        context = this;
         garduDao = new GarduDaoImpl();
         data = garduDao.getAllData(this);
         listView = (ListView)findViewById(R.id.listGardu);
@@ -75,6 +78,18 @@ public class GarduPage extends AppCompatActivity{
                                intent.putExtra("GARDU_DATA_SESSION", (Serializable) listView.getItemAtPosition(arg2));
                                startActivity(intent);
                                break;
+                            case 3 :
+//                                Toast.makeText(context, "ahahhaha",Toast.LENGTH_SHORT).show();
+                                new AlertDialog.Builder(context)
+                                        .setTitle("Confirmation")
+                                        .setMessage("Do you really want to delete this data ?")
+                                        .setIcon(android.R.drawable.ic_dialog_alert)
+                                        .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                                            public void onClick(DialogInterface dialog, int whichButton) {
+                                                garduDao.deleteData(((Gardu)listView.getItemAtPosition(arg2)).getId(), context);
+                                            }})
+                                        .setNegativeButton(android.R.string.no, null).show();
+                                break;
                         }
                     }
                 });

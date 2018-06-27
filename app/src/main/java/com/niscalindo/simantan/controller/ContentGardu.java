@@ -81,6 +81,19 @@ public class ContentGardu extends AppCompatActivity implements NavigationView.On
                                 intent.putExtra("GARDU_DATA_SESSION", (Serializable) gardu);
                                 startActivity(intent);
                                 break;
+                            case 3 :
+                                new AlertDialog.Builder(context)
+                                        .setTitle("Confirmation")
+                                        .setMessage("Do you really want to delete this data ?")
+                                        .setIcon(android.R.drawable.ic_dialog_alert)
+                                        .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                                            public void onClick(DialogInterface dialog, int whichButton) {
+                                                garduDao.deleteData(gardu.getId(), context);
+                                                Intent intent = new Intent("com.niscalindo.simantan.controller.ContentGardu");
+                                                startActivity(intent);
+                                            }})
+                                        .setNegativeButton(android.R.string.no, null).show();
+                                break;
                         }
                     }
                 });
